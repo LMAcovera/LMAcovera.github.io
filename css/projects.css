@@ -1026,7 +1026,6 @@ html {
 
     .tech-stack {
         margin-top: 0.3rem;
-        display: none !important;
     }
 }
 
@@ -1400,7 +1399,6 @@ html {
 
     .tech-stack {
         gap: 0.8rem;
-        display: none !important;
     }
 
     .tech-item {
