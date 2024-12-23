@@ -1,0 +1,990 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Snake Game</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <link rel="icon" type="image/png" href="../../assets/images/logo.png" sizes="96x96">
+  <link rel="stylesheet" href="../../css/home.css">
+  <link rel="stylesheet" href="../../css/projects.css">
+<style>
+body {
+  margin: 0;
+  background: linear-gradient(135deg, #1a1a2e, #16213e, #0f3460);
+  min-height: 100vh;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+p {
+  font-weight: bold;
+  font-size: 14px;
+  color: #fff;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  text-shadow: 0 0 10px rgba(255,255,255,0.5);
+}
+
+.game-canvas {
+  width: 100%;
+  height: 100vw;
+  max-width: 800px;
+  max-height: 800px;
+  margin: 20px auto;
+  border-radius: 20px;
+  box-shadow: 0 0 50px rgba(0,0,0,0.3),
+              inset 0 0 30px rgba(0,0,0,0.3);
+  background: linear-gradient(45deg, #0a0a0a, #1a1a1a);
+  border: 3px solid rgba(255,255,255,0.1);
+  backdrop-filter: blur(10px);
+}
+
+.keys {
+  font-family: 'Lato', sans-serif;
+  text-align: center;
+  width: 100%;
+  padding: 20px;
+  box-sizing: border-box;
+  height: 220px;
+  margin: auto;
+  background: rgba(255,255,255,0.05);
+  backdrop-filter: blur(10px);
+  border-radius: 30px;
+}
+
+.up {
+  position: relative;
+  top: -4px;
+}
+
+.chevron::before {
+  border-style: solid;
+  border-width: 8px 8px 0 0;
+  content: '';
+  display: inline-block;
+  height: 25px;
+  width: 25px;
+  position: relative;
+  transform: rotate(-45deg);
+  transition: all 0.3s ease;
+}
+
+.chevron.down::before {
+  transform: rotate(135deg);
+  top: -22px;
+}
+
+.chevron.right::before {
+  transform: rotate(45deg);
+  top: -18px;
+  left: -5px;
+}
+
+.chevron.left::before {
+  transform: rotate(225deg);
+  top: -18px;
+  left: 5px;
+}
+
+.arr {
+  cursor: pointer;
+  width: 80px;
+  height: 80px;
+  text-align: center;
+  line-height: 100px;
+  background: linear-gradient(145deg, #00a8ff, #0097e6);
+  color: white;
+  font-size: 50px;
+  display: inline-block;
+  margin: 8px;
+  transition: all 0.2s ease;
+  user-select: none;
+  border-radius: 20px;
+  border: none;
+  box-shadow: 0 5px 20px rgba(0,168,255,0.3),
+              inset 0 0 15px rgba(255,255,255,0.2);
+  position: relative;
+  overflow: hidden;
+}
+
+.arr:before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    120deg,
+    transparent,
+    rgba(255,255,255,0.3),
+    transparent
+  );
+  transition: 0.5s;
+}
+
+.arr:hover:before {
+  left: 100%;
+}
+
+.arr:active {
+  transform: scale(0.95) translateY(4px);
+  box-shadow: 0 2px 10px rgba(0,168,255,0.2);
+}
+
+#game-container {
+  display: flex;
+  flex-direction: column;
+  background: rgba(255,255,255,0.05);
+  padding: 20px;
+  border-radius: 30px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+  backdrop-filter: blur(10px);
+  max-width: 840px;
+  margin: 20px auto;
+}
+
+@keyframes glow {
+  0% {
+    box-shadow: 0 0 20px rgba(0,168,255,0.3);
+  }
+  50% {
+    box-shadow: 0 0 40px rgba(0,168,255,0.5);
+  }
+  100% {
+    box-shadow: 0 0 20px rgba(0,168,255,0.3);
+  }
+}
+
+.arr:hover {
+  animation: glow 1.5s infinite;
+  transform: translateY(-2px);
+}
+
+@media (max-width: 600px) {
+  .arr {
+    width: 65px;
+    height: 65px;
+    margin: 5px;
+  }
+  
+  .game-canvas {
+    margin: 10px auto;
+  }
+  
+  #game-container {
+    margin: 10px;
+    padding: 10px;
+  }
+}
+
+.back-to-project {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.8rem;
+    padding: 0.8rem 1.5rem;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 12px;
+    color: white;
+    text-decoration: none;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 0.9rem;
+    backdrop-filter: blur(10px);
+    transition: all 0.3s ease;
+    z-index: 1000;
+}
+
+.back-to-project:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: translateX(-5px);
+}
+
+.back-to-project i {
+    font-size: 1rem;
+}
+
+@media (max-width: 600px) {
+    .back-to-project {
+        top: 10px;
+        left: 10px;
+        padding: 0.6rem 1rem;
+        font-size: 0.8rem;
+    }
+}
+</style>
+</head>
+<body>
+  <a href="snakegame.html" class="back-to-project">
+    <i class="fas fa-arrow-left"></i> Back to Project
+  </a>
+	<div id="game-container">
+		<canvas id="gc" class="game-canvas" width="400" height="400"></canvas>
+	</div>
+	<div class="keys">
+	  <a class="up arr" onclick="Snake.action('up')">
+	    <i class="chevron up"></i></a>
+	  <br />
+	  <a class="left arr" onclick="Snake.action('left')">
+	    <i class="chevron left"></i></a>
+	  <a class="down arr" onclick="Snake.action('down')">
+	    <i class="chevron down"></i></a>
+	  <a class="right arr" onclick="Snake.action('right')">
+	    <i class="chevron right"></i></a>
+        <p style="text-align: center; font-size: 12px; color: rgb(0, 0, 0);">-by Lem</p>
+	</div>
+	<script>
+        var Snake = (function () {
+
+const INITIAL_TAIL = 4;
+var fixedTail = true;
+
+var intervalID;
+
+var tileCount = 10;
+var gridSize = 400/tileCount;
+
+const INITIAL_PLAYER = { x: Math.floor(tileCount / 2), y: Math.floor(tileCount / 2) };
+
+var velocity = { x:0, y:0 };
+var player = { x: INITIAL_PLAYER.x, y: INITIAL_PLAYER.y };
+
+var walls = false;
+
+var fruit = { x:1, y:1 };
+
+var trail = [];
+var tail = INITIAL_TAIL;
+
+var reward = 0;
+var points = 0;
+var pointsMax = 0;
+
+var ActionEnum = { 'none':0, 'up':1, 'down':2, 'left':3, 'right':4 };
+Object.freeze(ActionEnum);
+var lastAction = ActionEnum.none;
+
+// Power-ups system
+const powerUps = {
+  SPEED_BOOST: 'speed',
+  SHIELD: 'shield',
+  DOUBLE_POINTS: 'double'
+};
+
+let activePowerUps = new Set();
+
+function spawnPowerUp() {
+  if (Math.random() < 0.1) { // 10% chance
+    const type = Object.values(powerUps)[Math.floor(Math.random() * 3)];
+    // Place power-up on grid
+    powerUp = {
+      x: Math.floor(Math.random() * tileCount),
+      y: Math.floor(Math.random() * tileCount),
+      type: type
+    };
+  }
+}
+
+// Add levels system
+let currentLevel = 1;
+let requiredPoints = 5;
+
+function checkLevelUp() {
+  if (points >= requiredPoints) {
+    currentLevel++;
+    requiredPoints *= 2;
+    // Increase speed
+    Snake.start(8 + currentLevel);
+    showLevelUpAnimation();
+  }
+}
+
+// Add particle effects
+class Particle {
+  constructor(x, y) {
+    this.x = x;
+    this.y = y;
+    this.velocity = {
+      x: (Math.random() - 0.5) * 4,
+      y: (Math.random() - 0.5) * 4
+    };
+    this.alpha = 1;
+  }
+
+  draw(ctx) {
+    ctx.fillStyle = `rgba(255,255,255,${this.alpha})`;
+    ctx.beginPath();
+    ctx.arc(this.x, this.y, 2, 0, Math.PI * 2);
+    ctx.fill();
+  }
+
+  update() {
+    this.x += this.velocity.x;
+    this.y += this.velocity.y;
+    this.alpha -= 0.02;
+  }
+}
+
+let particles = [];
+
+function createParticles(x, y) {
+  for (let i = 0; i < 20; i++) {
+    particles.push(new Particle(x, y));
+  }
+}
+
+function setup () {
+  canv = document.getElementById('gc');
+  ctx = canv.getContext('2d');
+
+  game.reset();
+}
+
+var game = {
+
+  reset: function () {
+    ctx.fillStyle = 'grey';
+    ctx.fillRect(0, 0, canv.width, canv.height);
+
+    tail = INITIAL_TAIL;
+    points = 0;
+    velocity.x = 0;
+    velocity.y = 0;
+    player.x = INITIAL_PLAYER.x;
+    player.y = INITIAL_PLAYER.y;
+    reward = -1;
+
+    lastAction = ActionEnum.none;
+
+    trail = [];
+    trail.push({ x: player.x, y: player.y });
+  },
+
+  action: {
+    up: function () {
+      if (lastAction != ActionEnum.down){
+        velocity.x = 0;
+        velocity.y = -1;
+      }
+    },
+    down: function () {
+      if (lastAction != ActionEnum.up){
+        velocity.x = 0;
+        velocity.y = 1;
+      }
+    },
+    left: function () {
+      if (lastAction != ActionEnum.right){
+        velocity.x = -1;
+        velocity.y = 0;
+      }
+    },
+    right: function () {
+      if (lastAction != ActionEnum.left){
+        velocity.x = 1;
+        velocity.y = 0;
+      }
+    }
+  },
+
+  RandomFruit: function () {
+    if(walls){
+      fruit.x = 1+Math.floor(Math.random() * (tileCount-2));
+      fruit.y = 1+Math.floor(Math.random() * (tileCount-2));
+    }
+    else {
+      fruit.x = Math.floor(Math.random() * tileCount);
+      fruit.y = Math.floor(Math.random() * tileCount);
+    }
+  },
+
+  log: function () {
+    console.log('====================');
+    console.log('x:' + player.x + ', y:' + player.y);
+    console.log('tail:' + tail + ', trail.length:' + trail.length);
+  },
+
+  loop: function () {
+    ctx.fillStyle = 'black';
+    ctx.fillRect(0,0,canv.width,canv.height);
+
+    reward = -0.1;
+
+    function DontHitWall () {
+      if(player.x < 0) player.x = tileCount-1;
+      if(player.x >= tileCount) player.x = 0;
+      if(player.y < 0) player.y = tileCount-1;
+      if(player.y >= tileCount) player.y = 0;
+    }
+    function HitWall () {
+      if(player.x < 1) game.reset();
+      if(player.x > tileCount-2) game.reset();
+      if(player.y < 1) game.reset();
+      if(player.y > tileCount-2) game.reset();
+
+      ctx.fillStyle = 'grey';
+      ctx.fillRect(0,0,gridSize-1,canv.height);
+      ctx.fillRect(0,0,canv.width,gridSize-1);
+      ctx.fillRect(canv.width-gridSize+1,0,gridSize,canv.height);
+      ctx.fillRect(0, canv.height-gridSize+1,canv.width,gridSize);
+    }
+
+    var stopped = velocity.x == 0 && velocity.y == 0;
+
+    player.x += velocity.x;
+    player.y += velocity.y;
+
+    if (velocity.x == 0 && velocity.y == -1) lastAction = ActionEnum.up;
+    if (velocity.x == 0 && velocity.y == 1) lastAction = ActionEnum.down;
+    if (velocity.x == -1 && velocity.y == 0) lastAction = ActionEnum.left;
+    if (velocity.x == 1 && velocity.y == 0) lastAction = ActionEnum.right;
+
+    ctx.fillStyle = 'rgba(40,40,40,0.😎';
+    ctx.fillRect(0,0,canv.width,canv.height);
+
+    if(walls) HitWall();
+    else DontHitWall();
+
+
+    if (!stopped){
+      trail.push({x:player.x, y:player.y});
+      while(trail.length > tail) trail.shift();
+    }
+
+    if(!stopped) {
+      ctx.fillStyle = 'rgba(200,200,200,0.2)';
+      ctx.font = "small-caps 14px Helvetica";
+      ctx.fillText("(esc) reset", 24, 356);
+      ctx.fillText("(space) pause", 24, 374);
+    }
+
+ctx.fillStyle = 'darkgreen';
+for (var i = 0; i < trail.length - 1; i++) {
+  const segment = trail[i];
+  // Create gradient for snake body
+  const gradient = ctx.createLinearGradient(
+    segment.x * gridSize,
+    segment.y * gridSize,
+    (segment.x + 1) * gridSize,
+    (segment.y + 1) * gridSize
+  );
+  gradient.addColorStop(0, '#4CAF50');
+  gradient.addColorStop(1, '#2E7D32');
+  
+  ctx.fillStyle = gradient;
+  ctx.shadowColor = '#4CAF50';
+  ctx.shadowBlur = 10;
+  
+  // Draw rounded rectangle for each segment
+  ctx.beginPath();
+  ctx.roundRect(
+    segment.x * gridSize + 1,
+    segment.y * gridSize + 1,
+    gridSize - 2,
+    gridSize - 2,
+    8
+  );
+  ctx.fill();
+  
+  if (!stopped && segment.x == player.x && segment.y == player.y) {
+    game.reset();
+  }
+}
+
+// Draw snake head
+const head = trail[trail.length - 1];
+const headGradient = ctx.createRadialGradient(
+  (head.x + 0.5) * gridSize,
+  (head.y + 0.5) * gridSize,
+  gridSize * 0.2,
+  (head.x + 0.5) * gridSize,
+  (head.y + 0.5) * gridSize,
+  gridSize * 0.5
+);
+headGradient.addColorStop(0, '#66BB6A');
+headGradient.addColorStop(1, '#388E3C');
+
+ctx.fillStyle = headGradient;
+ctx.shadowColor = '#4CAF50';
+ctx.shadowBlur = 15;
+
+ctx.beginPath();
+ctx.roundRect(
+  head.x * gridSize + 1,
+  head.y * gridSize + 1,
+  gridSize - 2,
+  gridSize - 2,
+  12
+);
+ctx.fill();
+
+// Draw snake eyes
+ctx.fillStyle = 'white';
+ctx.shadowBlur = 0;
+const eyeSize = gridSize * 0.15;
+ctx.beginPath();
+ctx.arc(
+  head.x * gridSize + gridSize * 0.3,
+  head.y * gridSize + gridSize * 0.3,
+  eyeSize,
+  0,
+  Math.PI * 2
+);
+ctx.arc(
+  head.x * gridSize + gridSize * 0.7,
+  head.y * gridSize + gridSize * 0.3,
+  eyeSize,
+  0,
+  Math.PI * 2
+);
+ctx.fill();
+
+// Draw pupils
+ctx.fillStyle = 'black';
+const pupilSize = eyeSize * 0.5;
+ctx.beginPath();
+ctx.arc(
+  head.x * gridSize + gridSize * 0.3,
+  head.y * gridSize + gridSize * 0.3,
+  pupilSize,
+  0,
+  Math.PI * 2
+);
+ctx.arc(
+  head.x * gridSize + gridSize * 0.7,
+  head.y * gridSize + gridSize * 0.3,
+  pupilSize,
+  0,
+  Math.PI * 2
+);
+ctx.fill();
+
+// Check for collision with fruit
+if (player.x == fruit.x && player.y == fruit.y) {
+    if(!fixedTail) tail++;
+    points++;
+    if(points > pointsMax) pointsMax = points;
+    reward = 1;
+    
+    // Create eating effect
+    createParticles(fruit.x * gridSize + gridSize/2, fruit.y * gridSize + gridSize/2);
+    
+    // Play eating sound
+    playSound('eat');
+    
+    // Move fruit to new position
+    game.RandomFruit();
+    
+    // Make sure new fruit position isn't on snake
+    while((function () {
+        for(var i=0; i<trail.length; i++) {
+            if (trail[i].x == fruit.x && trail[i].y == fruit.y) {
+                game.RandomFruit();
+                return true;
+            }
+        }
+        return false;
+    })());
+}
+
+// Draw mouse (fruit)
+// Mouse body
+const mouseGradient = ctx.createRadialGradient(
+    (fruit.x + 0.5) * gridSize,
+    (fruit.y + 0.5) * gridSize,
+    0,
+    (fruit.x + 0.5) * gridSize,
+    (fruit.y + 0.5) * gridSize,
+    gridSize * 0.4
+);
+mouseGradient.addColorStop(0, '#f5f5f5');
+mouseGradient.addColorStop(1, '#9e9e9e');
+
+ctx.shadowColor = 'rgba(0,0,0,0.2)';
+ctx.shadowBlur = 15;
+
+// Body
+ctx.fillStyle = mouseGradient;
+ctx.beginPath();
+ctx.ellipse(
+    (fruit.x + 0.5) * gridSize,
+    (fruit.y + 0.5) * gridSize,
+    gridSize * 0.35,
+    gridSize * 0.25,
+    0,
+    0,
+    Math.PI * 2
+);
+ctx.fill();
+
+// Ears
+const earGradient = ctx.createRadialGradient(
+    (fruit.x + 0.5) * gridSize,
+    (fruit.y + 0.3) * gridSize,
+    0,
+    (fruit.x + 0.5) * gridSize,
+    (fruit.y + 0.3) * gridSize,
+    gridSize * 0.2
+);
+earGradient.addColorStop(0, '#ffcdd2');
+earGradient.addColorStop(1, '#e57373');
+
+ctx.fillStyle = earGradient;
+// Left ear
+ctx.beginPath();
+ctx.ellipse(
+    (fruit.x + 0.3) * gridSize,
+    (fruit.y + 0.3) * gridSize,
+    gridSize * 0.15,
+    gridSize * 0.15,
+    Math.PI / 4,
+    0,
+    Math.PI * 2
+);
+ctx.fill();
+
+// Right ear
+ctx.beginPath();
+ctx.ellipse(
+    (fruit.x + 0.7) * gridSize,
+    (fruit.y + 0.3) * gridSize,
+    gridSize * 0.15,
+    gridSize * 0.15,
+    -Math.PI / 4,
+    0,
+    Math.PI * 2
+);
+ctx.fill();
+
+// Eyes
+ctx.shadowBlur = 0;
+// White of eyes
+ctx.fillStyle = 'white';
+ctx.beginPath();
+ctx.ellipse(
+    (fruit.x + 0.35) * gridSize,
+    (fruit.y + 0.45) * gridSize,
+    gridSize * 0.08,
+    gridSize * 0.08,
+    0,
+    0,
+    Math.PI * 2
+);
+ctx.ellipse(
+    (fruit.x + 0.65) * gridSize,
+    (fruit.y + 0.45) * gridSize,
+    gridSize * 0.08,
+    gridSize * 0.08,
+    0,
+    0,
+    Math.PI * 2
+);
+ctx.fill();
+
+// Pupils
+ctx.fillStyle = '#1a1a1a';
+ctx.beginPath();
+ctx.ellipse(
+    (fruit.x + 0.35) * gridSize,
+    (fruit.y + 0.45) * gridSize,
+    gridSize * 0.04,
+    gridSize * 0.04,
+    0,
+    0,
+    Math.PI * 2
+);
+ctx.ellipse(
+    (fruit.x + 0.65) * gridSize,
+    (fruit.y + 0.45) * gridSize,
+    gridSize * 0.04,
+    gridSize * 0.04,
+    0,
+    0,
+    Math.PI * 2
+);
+ctx.fill();
+
+// Shine in eyes
+ctx.fillStyle = 'white';
+ctx.beginPath();
+ctx.ellipse(
+    (fruit.x + 0.33) * gridSize,
+    (fruit.y + 0.43) * gridSize,
+    gridSize * 0.02,
+    gridSize * 0.02,
+    0,
+    0,
+    Math.PI * 2
+);
+ctx.ellipse(
+    (fruit.x + 0.63) * gridSize,
+    (fruit.y + 0.43) * gridSize,
+    gridSize * 0.02,
+    gridSize * 0.02,
+    0,
+    0,
+    Math.PI * 2
+);
+ctx.fill();
+
+// Nose
+const noseGradient = ctx.createRadialGradient(
+    (fruit.x + 0.5) * gridSize,
+    (fruit.y + 0.6) * gridSize,
+    0,
+    (fruit.x + 0.5) * gridSize,
+    (fruit.y + 0.6) * gridSize,
+    gridSize * 0.08
+);
+noseGradient.addColorStop(0, '#ff8a80');
+noseGradient.addColorStop(1, '#d32f2f');
+
+ctx.fillStyle = noseGradient;
+ctx.beginPath();
+ctx.ellipse(
+    (fruit.x + 0.5) * gridSize,
+    (fruit.y + 0.6) * gridSize,
+    gridSize * 0.08,
+    gridSize * 0.06,
+    0,
+    0,
+    Math.PI * 2
+);
+ctx.fill();
+
+// Whiskers
+ctx.strokeStyle = '#bdbdbd';
+ctx.lineWidth = 1;
+// Left whiskers
+ctx.beginPath();
+ctx.moveTo((fruit.x + 0.3) * gridSize, (fruit.y + 0.6) * gridSize);
+ctx.lineTo((fruit.x + 0.1) * gridSize, (fruit.y + 0.5) * gridSize);
+ctx.moveTo((fruit.x + 0.3) * gridSize, (fruit.y + 0.6) * gridSize);
+ctx.lineTo((fruit.x + 0.1) * gridSize, (fruit.y + 0.6) * gridSize);
+ctx.moveTo((fruit.x + 0.3) * gridSize, (fruit.y + 0.6) * gridSize);
+ctx.lineTo((fruit.x + 0.1) * gridSize, (fruit.y + 0.7) * gridSize);
+// Right whiskers
+ctx.moveTo((fruit.x + 0.7) * gridSize, (fruit.y + 0.6) * gridSize);
+ctx.lineTo((fruit.x + 0.9) * gridSize, (fruit.y + 0.5) * gridSize);
+ctx.moveTo((fruit.x + 0.7) * gridSize, (fruit.y + 0.6) * gridSize);
+ctx.lineTo((fruit.x + 0.9) * gridSize, (fruit.y + 0.6) * gridSize);
+ctx.moveTo((fruit.x + 0.7) * gridSize, (fruit.y + 0.6) * gridSize);
+ctx.lineTo((fruit.x + 0.9) * gridSize, (fruit.y + 0.7) * gridSize);
+ctx.stroke();
+
+ctx.fillStyle = 'red';
+    if(stopped) {
+      ctx.fillStyle = 'rgba(250,250,250,0.';
+      ctx.font = "small-caps bold 14px Helvetica";
+      ctx.fillText("press ARROW KEYS to START...", 24, 374);
+    }
+
+    ctx.fillStyle = 'white';
+    ctx.font = "bold small-caps 16px Helvetica";
+    ctx.fillText("points: " + points, 288, 40);
+    ctx.fillText("top: " + pointsMax, 292, 60);
+    
+
+    return reward;
+  }
+}
+
+function keyPush (evt) {
+  switch(evt.keyCode) {
+    case 37:
+    game.action.left();
+    evt.preventDefault();
+    break;
+
+    case 38:
+    game.action.up();
+    evt.preventDefault();
+    break;
+
+    case 39:
+    game.action.right();
+    evt.preventDefault();
+    break;
+
+    case 40:
+    game.action.down();
+    evt.preventDefault();
+    break;
+
+    case 32: 
+    Snake.pause();
+    evt.preventDefault();
+    break;
+
+    case 27:
+    game.reset();
+    evt.preventDefault();
+    break;
+  }
+}
+
+return {
+  start: function (fps = 15) {
+    window.onload = setup;
+    intervalID = setInterval(game.loop, 1000 / fps);
+  },
+
+  loop: game.loop,
+
+  reset: game.reset,
+
+  stop: function () {
+    clearInterval(intervalID);
+  },
+
+  setup: {
+    keyboard: function (state) {
+      if (state) {
+        document.addEventListener('keydown', keyPush);
+      } else {
+        document.removeEventListener('keydown', keyPush);
+      }
+    },
+    wall: function (state) {
+      walls = state;
+    },
+    tileCount: function (size) {
+      tileCount = size;
+      gridSize = 400 / tileCount;
+    },
+    fixedTail: function (state) {
+      fixedTail = state;
+    }
+  },
+
+  action: function (act) {
+    switch(act) {
+      case 'left':
+        game.action.left();
+        break;
+
+      case 'up':
+        game.action.up();
+        break;
+
+      case 'right':
+        game.action.right();
+        break;
+
+      case 'down':
+        game.action.down();
+        break;
+    }
+  },
+
+
+  pause: function () {
+    velocity.x = 0;
+    velocity.y = 0;
+  },
+
+  clearTopScore: function () {
+    pointsMax = 0;
+  },
+
+  data: {
+    player: player,
+    fruit: fruit,
+    trail: function () {
+      return trail;
+    }
+  },
+
+  info: {
+    tileCount: tileCount
+  }
+};
+
+})();
+
+Snake.start(8);
+Snake.setup.keyboard(true);
+Snake.setup.fixedTail(false);
+
+function drawSnake() {
+  ctx.fillStyle = 'transparent';
+  for (let i = 0; i < trail.length; i++) {
+    const segment = trail[i];
+    const hue = (i * 2) % 360; // Rainbow effect
+    ctx.fillStyle = `hsl(${hue}, 70%, 50%)`;
+    
+    // Pulsing effect
+    const scale = 1 + Math.sin(Date.now() / 200) * 0.05;
+    const size = gridSize * scale;
+    
+    ctx.beginPath();
+    ctx.roundRect(
+      segment.x * gridSize + 1,
+      segment.y * gridSize + 1,
+      size - 2,
+      size - 2,
+      5
+    );
+    ctx.fill();
+    
+    // Glow effect
+    ctx.shadowColor = `hsl(${hue}, 70%, 50%)`;
+    ctx.shadowBlur = 10;
+  }
+}
+
+const sounds = {
+  eat: new Audio('eat.mp3'),
+  die: new Audio('die.mp3'),
+  powerup: new Audio('powerup.mp3'),
+  levelUp: new Audio('levelup.mp3')
+};
+
+function playSound(sound) {
+  sounds[sound].currentTime = 0;
+  sounds[sound].play();
+}
+
+const gameModes = {
+  CLASSIC: 'classic',
+  TIME_ATTACK: 'timeAttack',
+  MAZE: 'maze'
+};
+
+let currentMode = gameModes.CLASSIC;
+let timeLeft = 60; // for time attack mode
+
+function setupGameMode(mode) {
+  currentMode = mode;
+  switch(mode) {
+    case gameModes.TIME_ATTACK:
+      startTimer();
+      break;
+    case gameModes.MAZE:
+      generateMaze();
+      break;
+  }
+}
+
+function drawScore() {
+  ctx.fillStyle = 'white';
+  ctx.font = '24px Arial';
+  ctx.textAlign = 'center';
+  
+  // Create circular background
+  ctx.beginPath();
+  ctx.arc(canv.width - 50, 50, 40, 0, Math.PI * 2);
+  ctx.fillStyle = 'rgba(255,255,255,0.1)';
+  ctx.fill();
+  
+  // Draw score
+  ctx.fillStyle = 'white';
+  ctx.fillText(points, canv.width - 50, 60);
+}
+
+    </script>
+</body>
+</html>
