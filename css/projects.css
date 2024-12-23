@@ -97,15 +97,34 @@
 .project-links {
     display: flex;
     gap: 1rem;
+    margin-top: auto;
+    justify-content: flex-start;
+    align-items: center;
 }
 
 .project-links .btn {
+    flex: 1;  /* Make buttons equal width */
+    min-width: 100px;  /* Minimum width for buttons */
+    text-align: center;
     padding: 0.5rem 1rem;
-    border-radius: 8px;
-    font-size: 0.9rem;
-    transition: all 0.3s ease;
+    white-space: nowrap;  /* Prevent text wrapping */
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
 }
 
+.project-links a {
+    flex: 1;
+    text-align: center;
+    padding: 0.6rem 1rem;
+    font-size: 0.9rem;
+    white-space: nowrap;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+}
 /* Responsive Design */
 @media (max-width: 1200px) {
     .projects-grid {
@@ -362,9 +381,10 @@ body {
 
 .project-links {
     display: flex;
-    justify-content: center;
     gap: 1rem;
-    margin-top: 1.5rem;
+    margin-top: auto;  /* Push links to bottom */
+    justify-content: flex-start;
+    align-items: center;
 }
 
 .github-link, .demo-link {
@@ -836,8 +856,8 @@ html {
     }
 
     .project-links {
+        flex-direction: row;
         gap: 0.5rem;
-        margin-top: 0.8rem;
     }
 
     .project-links a {
@@ -1313,6 +1333,7 @@ html {
     display: flex;
     flex-wrap: wrap;
     gap: 1rem;
+    display: none !important;
 }
 
 .tech-item {
