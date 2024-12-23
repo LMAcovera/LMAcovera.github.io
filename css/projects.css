@@ -848,6 +848,7 @@ html {
         gap: 0.3rem;
         margin-top: 0.5rem;
         flex-wrap: wrap;
+        display: none !important;
     }
 
     .tech-stack span {
@@ -893,6 +894,7 @@ html {
     .tech-stack {
         gap: 0.25rem;
         margin-top: 0.4rem;
+        display: none !important;
     }
 
     .tech-stack span {
@@ -1024,6 +1026,7 @@ html {
 
     .tech-stack {
         margin-top: 0.3rem;
+        display: none !important;
     }
 }
 
@@ -1333,7 +1336,6 @@ html {
     display: flex;
     flex-wrap: wrap;
     gap: 1rem;
-    display: none !important;
 }
 
 .tech-item {
@@ -1398,6 +1400,7 @@ html {
 
     .tech-stack {
         gap: 0.8rem;
+        display: none !important;
     }
 
     .tech-item {
