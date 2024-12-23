@@ -2056,6 +2056,1643 @@ main {
     border: 2px solid var(--accent-color);
 }
 
+/* Social Links */
+.social-links {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 2rem;
+    flex-wrap: wrap;
+}
+
+.social-btn {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    background: var(--card-bg);
+    transition: transform 0.3s ease;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .hero {
+        padding: 5rem 1rem 2rem;
+    }
+
+    .profile-photo {
+        width: 120px;
+        height: 120px;
+    }
+
+    .name-title-container h1 {
+        font-size: 2rem;
+    }
+
+    .status-indicator {
+        font-size: 0.8rem;
+        padding: 0.4rem 0.8rem;
+    }
+
+    .stats-container {
+        gap: 1.5rem;
+    }
+
+    .stat-number {
+        font-size: 1.8rem;
+    }
+
+    .stat-label {
+        font-size: 0.8rem;
+    }
+
+    .cta-container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .primary-btn, .secondary-btn {
+        width: 100%;
+        max-width: 300px;
+        justify-content: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero {
+        padding: 4rem 1rem 2rem;
+    }
+
+    .profile-photo {
+        width: 100px;
+        height: 100px;
+    }
+
+    .name-title-container h1 {
+        font-size: 1.8rem;
+    }
+
+    .title-badges {
+        gap: 0.5rem;
+    }
+
+    .badge, .badge-outline {
+        padding: 0.4rem 0.8rem;
+        font-size: 0.8rem;
+    }
+
+    .stats-container {
+        gap: 1rem;
+    }
+
+    .social-links {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .social-btn {
+        width: 100%;
+        max-width: 200px;
+        justify-content: center;
+    }
+}
+
+/* Landscape Mode */
+@media (max-height: 600px) and (orientation: landscape) {
+    .hero {
+        padding: 4rem 1rem;
+        min-height: auto;
+    }
+
+    .profile-photo {
+        width: 80px;
+        height: 80px;
+    }
+
+    .stats-container {
+        margin: 1rem 0;
+    }
+
+    .cta-container {
+        margin: 1rem 0;
+    }
+}
+
+.tagline-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.tagline {
+    font-size: 1.4rem;
+    font-weight: 600;
+    background: var(--gradient);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 0.2rem;
+}
+
+.sub-tagline {
+    font-size: 1rem;
+    color: var(--text-color);
+    opacity: 0.9;
+    letter-spacing: 0.5px;
+}
+
+.sub-tagline span {
+    margin: 0 0.5rem;
+    opacity: 0.5;
+}
+
+/* Add subtle animation */
+.tagline, .sub-tagline {
+    animation: fadeInUp 0.8s ease-out forwards;
+}
+
+.sub-tagline {
+    animation-delay: 0.2s;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.separator {
+    margin: 0 0.5rem;
+    opacity: 0.5;
+}
+
+.social-links {
+    display: flex;
+    gap: 1.5rem;
+    justify-content: center;
+    margin-top: 1rem;
+}
+
+.social-links a {
+    color: var(--text-color);
+    font-size: 1.3rem;
+    transition: all 0.3s ease;
+    opacity: 0.7;
+}
+
+.social-links a:hover {
+    opacity: 1;
+    transform: translateY(-3px);
+    color: var(--secondary-color);
+}
+
+/* Fade in animation */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .hero h1 {
+        font-size: 2rem;
+    }
+    
+    .tagline {
+        font-size: 1rem;
+    }
+    
+    .profile-photo {
+        width: 120px;
+        height: 120px;
+    }
+}
+
+section {
+    padding: 120px 50px;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+h2 {
+    text-align: center;
+    margin-bottom: 3rem;
+    font-size: 2.5rem;
+}
+
+.projects-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2.5rem;
+    padding: 20px 0;
+}
+
+.project-card {
+    min-height: 400px;
+    display: flex;
+    flex-direction: column;
+    background: var(--card-bg);
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(5px);
+    transition: transform 0.3s;
+}
+
+.project-card:hover {
+    transform: translateY(-5px);
+    animation: float 3s ease infinite;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.project-card img {
+    width: 100%;
+    height: 240px;
+    object-fit: cover;
+}
+
+.project-card h3 {
+    padding: 2rem 2rem 1rem;
+}
+
+.project-card p {
+    padding: 0 2rem;
+    flex-grow: 1;
+    color: #94a3b8;
+}
+
+.project-links {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 1rem;
+}
+
+.project-card .btn {
+    margin: 0 auto;
+    text-align: center;
+}
+
+.btn {
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    background: var(--gradient);
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background 0.3s;
+    box-shadow: 0 0 15px rgba(35, 93, 114, 0.3);
+}
+
+.btn:hover {
+    background: var(--gradient);
+    box-shadow: 0 0 25px rgba(35, 93, 114, 0.5);
+}
+
+.achievement-card {
+    text-align: center;
+    padding: 2rem;
+    background: var(--card-bg);
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(5px);
+    transition: transform 0.3s;
+}
+
+.achievement-card:hover {
+    transform: translateY(-5px);
+    animation: float 3s ease infinite;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.achievement-card i {
+    font-size: 2.5rem;
+    color: var(--secondary-color);
+    margin-bottom: 1rem;
+}
+
+.contact-content {
+    text-align: center;
+}
+
+.contact-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 1rem 2rem;
+    background: var(--secondary-color);
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 1.1rem;
+    transition: background 0.3s;
+}
+
+.contact-btn:hover {
+    background: #0773c5;
+}
+
+footer {
+    position: relative;
+    z-index: 1000;
+    background: var(--dark-gradient);
+    padding: 2rem;
+    text-align: center;
+    width: 100%;
+    margin-top: auto;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+@media (max-width: 1200px) {
+    .projects-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .projects-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    section {
+        padding: 80px 30px;
+    }
+}
+
+.skill-tags span {
+    background: var(--gradient);
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 25px;
+    display: inline-block;
+    margin: 0.25rem;
+    font-size: 0.9rem;
+}
+
+.achievement-card {
+    background: var(--card-bg);
+    border-radius: 15px;
+    padding: 2.5rem;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(5px);
+    transition: transform 0.3s;
+}
+
+.achievement-card:hover {
+    transform: translateY(-5px);
+    animation: float 3s ease infinite;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.achievement-card i {
+    background: var(--gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-size: 3rem;
+}
+
+.btn {
+    background: var(--gradient);
+    color: white;
+    padding: 0.75rem 1.5rem;
+    border-radius: 25px;
+    font-weight: 500;
+    border: none;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    background: var(--gradient);
+}
+
+/* Add floating animation to cards */
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+
+.project-card:hover, .achievement-card:hover {
+    animation: float 3s ease infinite;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.stars {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: -1;
+}
+
+.star {
+    position: absolute;
+    width: 2px;
+    height: 2px;
+    background: white;
+    border-radius: 50%;
+    opacity: 0;
+    animation: twinkle 8s infinite;
+}
+
+@keyframes twinkle {
+    0%, 100% { opacity: 0; transform: scale(1); }
+    50% { opacity: 0.8; transform: scale(1.2); }
+}
+
+/* Add/update these typography styles */
+h1, h2, h3, h4 {
+    font-family: var(--font-heading);
+    letter-spacing: -0.5px;
+    line-height: 1.2;
+}
+
+.project-card h3 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    letter-spacing: -0.3px;
+}
+
+.project-card p {
+    font-family: var(--font-body);
+    font-size: 1rem;
+    line-height: 1.6;
+}
+
+.btn {
+    font-family: var(--font-body);
+    font-weight: 500;
+    letter-spacing: -0.2px;
+    text-transform: none;
+}
+
+.achievement-card h3 {
+    font-size: 1.3rem;
+    font-weight: 600;
+    margin: 1rem 0;
+}
+
+.skill-tags span {
+    font-family: var(--font-body);
+    font-weight: 500;
+    font-size: 0.9rem;
+    letter-spacing: -0.2px;
+}
+
+/* Add these styles for the about section */
+.about-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    padding: 10px 0;
+}
+
+.about-card {
+    position: relative;
+    background: rgba(30, 41, 59, 0.8);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    padding: 2rem;
+    transform-style: preserve-3d;
+    perspective: 2000px;
+    transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.about-card:hover {
+    transform: 
+        translateY(-10px) 
+        rotateX(10deg) 
+        rotateY(10deg) 
+        scale3d(1.02, 1.02, 1.02);
+    box-shadow: 
+        20px 20px 60px rgba(0, 0, 0, 0.5),
+        -5px -5px 15px rgba(255, 255, 255, 0.05),
+        inset 0px 1px 1px rgba(255, 255, 255, 0.1);
+}
+
+.card-header {
+    transform: translateZ(40px);
+    margin-bottom: 1.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.card-header i {
+    font-size: 1.4rem;
+    background: var(--gradient);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.card-header h3 {
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin: 0;
+}
+
+.education-item {
+    position: relative;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 15px;
+    transform: translateZ(20px);
+    transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.education-item:hover {
+    transform: translateZ(30px) scale(1.02);
+    background: rgba(255, 255, 255, 0.07);
+    border-color: rgba(255, 255, 255, 0.1);
+    box-shadow: 
+        0 10px 20px rgba(0, 0, 0, 0.2),
+        0 0 15px rgba(255, 255, 255, 0.05);
+}
+
+.education-item h4 {
+    color: var(--text-color);
+    font-size: 0.9rem;
+    line-height: 1.3;
+    margin-bottom: 0.2rem;
+    font-weight: 600;
+}
+
+.education-item p {
+    color: rgb(255, 255, 255);
+    font-size: 0.85rem;
+    margin-bottom: 0.2rem;
+    font-weight: 500;
+}
+
+.education-item span {
+    font-size: 0.8rem;
+    opacity: 0.7;
+    display: block;
+    margin-bottom: 0.3rem;
+}
+
+.education-status {
+    transform: translateZ(35px);
+    transition: all 0.3s ease;
+    background: var(--gradient);
+    padding: 0.3rem 0.8rem;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    display: inline-block;
+    margin-top: 0.5rem;
+}
+
+.education-item:last-child {
+    margin-bottom: 0;
+    padding-bottom: 0;
+    border-bottom: none;
+}
+
+.skill-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+}
+
+.skill-tags span {
+    background: var(--gradient);
+    color: white;
+    padding: 0.4rem 0.8rem;
+    border-radius: 25px;
+    font-size: 0.85rem;
+}
+
+/* Responsive design */
+@media (max-width: 1024px) {
+    .about-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .about-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Add these styles for the background section */
+.key-traits {
+    margin-top: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+}
+
+.trait-item {
+    transform: translateZ(25px);
+    transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    padding: 1rem;
+    border-radius: 12px;
+    margin-bottom: 0.8rem;
+}
+
+.trait-item:hover {
+    transform: translateZ(40px) scale(1.02);
+    background: rgba(255, 255, 255, 0.07);
+    border-color: rgba(255, 255, 255, 0.1);
+    box-shadow: 
+        0 8px 16px rgba(0, 0, 0, 0.2),
+        0 0 10px rgba(255, 255, 255, 0.05);
+}
+
+.trait-item i {
+    font-size: 1rem;
+    color: var(--secondary-color);
+    background: var(--gradient);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.trait-item span {
+    font-family: var(--font-heading);
+    font-weight: 600;
+    font-size: 1rem;
+    color: var(--text-color);
+}
+
+.trait-item p {
+    font-size: 0.9rem;
+    color: #94a3b8;
+    line-height: 1.5;
+    margin: 0;
+}
+
+.about-card .card-content > p {
+    font-size: 0.95rem;
+    line-height: 1.5;
+    color: var(--text-color);
+    margin-bottom: 0.8rem;
+}
+
+/* Add these styles to handle longer school names */
+.education-item h4 {
+    font-size: 0.95rem; /* Slightly smaller to accommodate longer names */
+    line-height: 1.3;
+    margin-bottom: 0.3rem;
+}
+
+.education-item {
+    margin-bottom: 0.8rem;
+    padding-bottom: 0.8rem;
+}
+
+.education-item:last-child {
+    margin-bottom: 0;
+    padding-bottom: 0;
+    border-bottom: none;
+}
+
+/* Update skills styling */
+.skill-category {
+    margin-bottom: 1rem;
+}
+
+.skill-category:last-child {
+    margin-bottom: 0;
+}
+
+.category-label {
+    display: block;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--secondary-color);
+    margin-bottom: 0.5rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.skill-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+}
+
+.skill-tags span {
+    background: var(--gradient);
+    color: white;
+    padding: 0.4rem 0.8rem;
+    border-radius: 25px;
+    font-size: 0.85rem;
+    font-weight: 500;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.skill-tags span:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* Add these styles for the click star effect */
+.click-star {
+    position: fixed;
+    width: 3px;
+    height: 3px;
+    background: white;
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9999;
+    animation: clickStarAnim 1.5s ease-out forwards;
+}
+
+@keyframes clickStarAnim {
+    0% {
+        transform: scale(0);
+        opacity: 0;
+        box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.7);
+    }
+    20% {
+        transform: scale(1.5);
+        opacity: 1;
+        box-shadow: 0 0 20px 10px rgba(255, 255, 255, 0.5);
+    }
+    100% {
+        transform: scale(0);
+        opacity: 0;
+        box-shadow: 0 0 40px 20px rgba(255, 255, 255, 0);
+    }
+}
+
+/* Optional: Add a subtle pulse to existing background stars */
+.star {
+    animation: twinkle 8s infinite, pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.5); }
+    100% { transform: scale(1); }
+}
+
+/* Add these animation styles */
+/* Floating animation for cards */
+.about-card, .project-card, .achievement-card {
+    animation: float 6s ease-in-out infinite;
+}
+
+.about-card:nth-child(2) {
+    animation-delay: 0.2s;
+}
+
+.about-card:nth-child(3) {
+    animation-delay: 0.4s;
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+
+/* Skill tag hover effect */
+.skill-tags span {
+    position: relative;
+    overflow: hidden;
+}
+
+.skill-tags span::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: rgba(255, 255, 255, 0.1);
+    transform: rotate(45deg);
+    transition: 0.5s;
+    opacity: 0;
+}
+
+.skill-tags span:hover::before {
+    opacity: 1;
+    transform: rotate(45deg) translateY(100%);
+}
+
+/* Glowing effect for section headers */
+section h2 {
+    position: relative;
+    animation: glow 2s ease-in-out infinite;
+}
+
+@keyframes glow {
+    0%, 100% { text-shadow: 0 0 5px rgba(255, 255, 255, 0.3); }
+    50% { text-shadow: 0 0 20px rgba(255, 255, 255, 0.5); }
+}
+
+/* Smooth scroll behavior */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Navbar link hover effect */
+.nav-links a {
+    position: relative;
+    overflow: hidden;
+}
+
+.nav-links a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: var(--gradient);
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform 0.3s ease;
+}
+
+.nav-links a:hover::after {
+    transform: scaleX(1);
+    transform-origin: left;
+}
+
+/* Project card hover effect */
+.project-card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.project-card:hover {
+    transform: translateY(-10px) scale(1.02);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+/* Contact button pulse effect */
+.contact-btn {
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% { box-shadow: 0 0 0 0 rgba(35, 93, 114, 0.4); }
+    70% { box-shadow: 0 0 0 10px rgba(35, 93, 114, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(35, 93, 114, 0); }
+}
+
+/* Add these for scroll reveal animation */
+.hidden {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 1s ease;
+}
+
+.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Project slider styles */
+.project-slider {
+    position: relative;
+    width: 100%;
+    height: 200px;
+    overflow: hidden;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+}
+
+.slider-images {
+    display: flex;
+    transition: transform 0.5s ease;
+}
+
+.slider-images img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    flex-shrink: 0;
+}
+
+.slider-dots {
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 8px;
+}
+
+.dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.5);
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.dot.active {
+    background: white;
+}
+
+/* Add these styles for the tech stack tags */
+.tech-stack {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin: 1rem 0;
+}
+
+.tech-stack span {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 0.3rem 0.8rem;
+    border-radius: 15px;
+    font-size: 0.8rem;
+    color: var(--text-color);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.tech-stack span:hover {
+    background: var(--gradient);
+    border-color: transparent;
+    transform: translateY(-2px);
+    transition: all 0.3s ease;
+}
+
+
+/* Add these styles for the typing animation */
+.sub-tagline {
+    min-height: 1.5em;
+    position: relative;
+    color: var(--text-color);
+    opacity: 0.9;
+}
+
+@keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+}
+
+.sub-tagline::after {
+    content: '|';
+    position: absolute;
+    right: -8px;
+    animation: blink 1s infinite;
+}
+
+.sub-tagline.typing-done::after {
+    display: none;
+}
+
+/* Add rocket styles */
+/* Update rocket styles */
+/* Update rocket styles */
+.rocket {
+    position: fixed;
+    font-size: 24px;
+    color: rgba(255, 255, 255, 0.6);
+    cursor: pointer;
+    z-index: -1;
+}
+
+.rocket.left-to-right {
+    animation: floatLeftToRight linear forwards;
+}
+
+.rocket.right-to-left {
+    animation: floatRightToLeft linear forwards;
+}
+
+@keyframes floatLeftToRight {
+    0% {
+        transform: translate(0, 0) rotate(45deg);
+        opacity: 0;
+    }
+    10% {
+        opacity: 1;
+    }
+    90% {
+        opacity: 1;
+    }
+    100% {
+        transform: translate(calc(100vw + 100px), 0) rotate(45deg);
+        opacity: 0;
+    }
+}
+
+@keyframes floatRightToLeft {
+    0% {
+        transform: translate(0, 0) rotate(225deg);
+        opacity: 0;
+    }
+    10% {
+        opacity: 1;
+    }
+    90% {
+        opacity: 1;
+    }
+    100% {
+        transform: translate(calc(-100vw - 100px), 0) rotate(225deg);
+        opacity: 0;
+    }
+}
+
+/* Explosion effect */
+.explosion {
+    position: fixed;  /* Changed from absolute */
+    width: 50px;
+    height: 50px;
+    background: radial-gradient(circle, rgba(255,0,0,0.8) 0%, rgba(255,0,0,0) 70%);
+    border-radius: 50%;
+    pointer-events: none;
+    animation: explode 1s ease-out forwards;
+    z-index: 2;  /* Changed from -1 */
+}
+
+@keyframes explode {
+    0% {
+        transform: scale(0);
+        opacity: 1;
+    }
+    100% {
+        transform: scale(3);
+        opacity: 0;
+    }
+}
+
+/* Add UFO styles */
+.ufo {
+    position: fixed;
+    font-size: 28px;
+    color: rgba(255, 255, 255, 0.8);
+    cursor: pointer;
+    z-index: 1;
+}
+
+.ufo-left-to-right {
+    animation: ufoFloatLeftToRight linear forwards;
+}
+
+.ufo-right-to-left {
+    animation: ufoFloatRightToLeft linear forwards;
+}
+
+@keyframes ufoFloatLeftToRight {
+    0% {
+        transform: translate(0, 0) rotate(0deg);
+        opacity: 0;
+    }
+    10% {
+        opacity: 1;
+        transform: translate(50px, 20px) rotate(5deg);
+    }
+    30% {
+        transform: translate(200px, -20px) rotate(-5deg);
+    }
+    50% {
+        transform: translate(400px, 20px) rotate(5deg);
+    }
+    70% {
+        transform: translate(600px, -20px) rotate(-5deg);
+    }
+    90% {
+        opacity: 1;
+    }
+    100% {
+        transform: translate(calc(100vw + 100px), 0) rotate(0deg);
+        opacity: 0;
+    }
+}
+
+@keyframes ufoFloatRightToLeft {
+    0% {
+        transform: translate(0, 0) rotate(0deg);
+        opacity: 0;
+    }
+    10% {
+        opacity: 1;
+        transform: translate(-50px, 20px) rotate(-5deg);
+    }
+    30% {
+        transform: translate(-200px, -20px) rotate(5deg);
+    }
+    50% {
+        transform: translate(-400px, 20px) rotate(-5deg);
+    }
+    70% {
+        transform: translate(-600px, -20px) rotate(5deg);
+    }
+    90% {
+        opacity: 1;
+    }
+    100% {
+        transform: translate(calc(-100vw - 100px), 0) rotate(0deg);
+        opacity: 0;
+    }
+}
+
+/* UFO explosion effect */
+.ufo-explosion {
+    position: fixed;
+    width: 60px;
+    height: 60px;
+    background: radial-gradient(circle, 
+        rgba(0,255,255,0.8) 0%, 
+        rgba(128,0,255,0.6) 40%, 
+        rgba(0,255,255,0) 70%);
+    border-radius: 50%;
+    pointer-events: none;
+    animation: ufoExplode 1.5s ease-out forwards;
+    z-index: 2;
+}
+
+@keyframes ufoExplode {
+    0% {
+        transform: scale(0);
+        opacity: 1;
+    }
+    50% {
+        transform: scale(2);
+        opacity: 0.8;
+    }
+    100% {
+        transform: scale(4);
+        opacity: 0;
+    }
+}
+
+/* Add these new styles for the milky way effect */
+.milky-way {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: 
+        radial-gradient(ellipse at center,
+            rgba(35, 93, 114, 0.15) 0%,
+            transparent 60%),
+        radial-gradient(ellipse at center,
+            rgba(30, 77, 95, 0.1) 0%,
+            transparent 50%);
+    filter: blur(20px);
+    transform: rotate(-45deg) scale(2);
+    opacity: 0.6;
+    animation: rotateGalaxy 200s linear infinite;
+    z-index: -1;
+}
+
+.galaxy-dust {
+    position: fixed;
+    width: 200%;
+    height: 200%;
+    top: -50%;
+    left: -50%;
+    background-image: 
+        radial-gradient(1px 1px at 25px 25px, white 1%, transparent 0%),
+        radial-gradient(1px 1px at 50px 50px, white 1%, transparent 0%),
+        radial-gradient(1px 1px at 75px 75px, white 1%, transparent 0%),
+        radial-gradient(2px 2px at 100px 100px, white 1%, transparent 0%);
+    background-size: 100px 100px;
+    animation: rotateDust 100s linear infinite;
+    opacity: 0.15;
+    z-index: -1;
+}
+
+.galaxy-core {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    width: 600px;
+    height: 600px;
+    transform: translate(-50%, -50%);
+    background: 
+        radial-gradient(circle at center,
+            rgba(76, 0, 255, 0.1) 0%,
+            rgba(76, 0, 255, 0) 70%),
+        radial-gradient(circle at center,
+            rgba(102, 45, 140, 0.1) 0%,
+            rgba(102, 45, 140, 0) 60%);
+    filter: blur(30px);
+    animation: pulseCore 8s ease-in-out infinite;
+    z-index: -1;
+}
+
+@keyframes rotateGalaxy {
+    0% { transform: rotate(-45deg) scale(2); }
+    100% { transform: rotate(315deg) scale(2); }
+}
+
+@keyframes rotateDust {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+@keyframes pulseCore {
+    0%, 100% { opacity: 0.3; transform: translate(-50%, -50%) scale(1); }
+    50% { opacity: 0.5; transform: translate(-50%, -50%) scale(1.2); }
+}
+
+/* And add this container for space effects */
+.space-effects-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    pointer-events: none;
+    z-index: -1;
+}
+
+main {
+    flex: 1;
+    position: relative;
+    z-index: 1;
+}
+
+/* Add shooting star styles */
+.shooting-star {
+    position: absolute;
+    width: 100px;
+    height: 2px;
+    background: linear-gradient(90deg, 
+        rgba(255, 255, 255, 1) 0%, 
+        rgba(255, 255, 255, 0.8) 50%, 
+        rgba(255, 255, 255, 0) 100%);
+    border-radius: 1px;
+    animation: shootingStar 1s linear forwards;
+    pointer-events: none;
+}
+
+@keyframes shootingStar {
+    0% {
+        transform: translateY(0) rotate(var(--angle));
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(1000px) rotate(var(--angle));
+        opacity: 0;
+    }
+}
+
+/* Modern 3D Card Styles */
+.about-grid, .projects-grid, .achievements-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 2.5rem;
+    perspective: 1000px;
+}
+
+.about-card, .project-card, .achievement-card {
+    position: relative;
+    background: rgba(30, 41, 59, 0.8);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    padding: 2rem;
+    transform-style: preserve-3d;
+    perspective: 1000px;
+    transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+/* Dramatic 3D Hover Effect */
+.about-card:hover, .project-card:hover, .achievement-card:hover {
+    transform: 
+        translateY(-20px) 
+        rotateX(20deg) 
+        rotateY(15deg) 
+        scale3d(1.05, 1.05, 1.05);
+    box-shadow: 
+        35px 35px 68px 0px rgba(0, 0, 0, 0.5),
+        inset -8px -8px 16px 0px rgba(0, 0, 0, 0.6),
+        inset 0px 11px 28px 0px rgb(255, 255, 255, 0.1);
+}
+
+/* 3D Inner Elements */
+.card-header, .card-content, .project-slider, .achievement-card i {
+    transform: translateZ(50px);
+    transform-style: preserve-3d;
+}
+
+.skill-tags span, .education-item, .trait-item {
+    transform: translateZ(30px);
+    transition: transform 0.3s ease;
+}
+
+.skill-tags span:hover, .education-item:hover, .trait-item:hover {
+    transform: translateZ(60px) scale(1.1);
+}
+
+/* Dramatic Light Effect */
+.about-card::before, .project-card::before, .achievement-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: 20px;
+    background: linear-gradient(
+        225deg,
+        transparent 0%,
+        rgba(255, 255, 255, 0.1) 100%
+    );
+    transform: translateZ(-10px);
+    z-index: -1;
+}
+
+/* Enhanced Shadow Effect */
+.about-card::after, .project-card::after, .achievement-card::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: 20px;
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+    transform: translateZ(-20px);
+    z-index: -2;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .about-card:hover, .project-card:hover, .achievement-card:hover {
+        transform: 
+            translateY(-10px) 
+            rotateX(10deg) 
+            rotateY(7deg) 
+            scale3d(1.02, 1.02, 1.02);
+    }
+}
+
+/* Hero Section Styles */
+.hero {
+    min-height: 100vh;
+    position: relative;
+    overflow: hidden;
+    padding: 4rem 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Profile Styles */
+.profile-frame {
+    position: relative;
+    width: 180px;
+    height: 180px;
+    margin: 0 auto;
+    border-radius: 50%;
+    padding: 5px;
+    background: linear-gradient(45deg, var(--secondary-color), var(--accent-color));
+    box-shadow: 
+        0 0 30px rgba(35, 93, 114, 0.3),
+        inset 0 0 20px rgba(255, 255, 255, 0.2);
+    transform-style: preserve-3d;
+    will-change: transform;
+}
+
+.profile-photo {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 4px solid rgba(255, 255, 255, 0.1);
+    transition: transform 0.5s ease;
+}
+
+.profile-frame:hover .profile-photo {
+    transform: scale(1.05);
+}
+
+/* Status Indicator */
+.status-indicator {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    background: rgba(30, 41, 59, 0.9);
+    padding: 5px 15px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.status-dot {
+    width: 8px;
+    height: 8px;
+    background: #22c55e;
+    border-radius: 50%;
+    animation: pulse 2s infinite;
+}
+
+/* Title Badges */
+.title-badges {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    margin: 1rem 0;
+}
+
+.badge {
+    background: var(--gradient);
+    padding: 0.5rem 1.5rem;
+    border-radius: 25px;
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+.badge-outline {
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    padding: 0.5rem 1.5rem;
+    border-radius: 25px;
+    font-size: 0.9rem;
+    backdrop-filter: blur(5px);
+}
+
+/* Tech Stack Pills */
+.tech-stack-pills {
+    display: flex;
+    gap: 0.8rem;
+    justify-content: center;
+    margin: 1.5rem 0;
+    flex-wrap: wrap;
+}
+
+.tech-stack-pills span {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 0.4rem 1rem;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: all 0.3s ease;
+}
+
+.tech-stack-pills span:hover {
+    background: var(--gradient);
+    transform: translateY(-2px);
+}
+
+/* Stats Container */
+.stats-container {
+    display: flex;
+    gap: 1.5rem;
+    justify-content: center;
+    margin: 2rem 0;
+    flex-wrap: nowrap;
+    padding: 0 1rem;
+}
+
+.stat-item {
+    background: var(--card-bg);
+    padding: 1rem;
+    border-radius: 12px;
+    text-align: center;
+    min-width: 100px;
+    flex: 1;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.stat-number {
+    font-size: 1.8rem;
+    font-weight: bold;
+    background: var(--gradient);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    display: block;
+    margin-bottom: 0.3rem;
+}
+
+.stat-label {
+    font-size: 0.9rem;
+    color: var(--text-color);
+    opacity: 0.9;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .stats-container {
+        gap: 1rem;
+        padding: 0 0.5rem;
+    }
+
+    .stat-item {
+        padding: 0.8rem;
+        min-width: 90px;
+    }
+
+    .stat-number {
+        font-size: 1.5rem;
+    }
+
+    .stat-label {
+        font-size: 0.8rem;
+    }
+}
+
+/* Small devices (Samsung A25 5G and similar) */
+@media (max-width: 480px) {
+    .stats-container {
+        gap: 0.5rem;
+        padding: 0 0.3rem;
+    }
+
+    .stat-item {
+        padding: 0.6rem;
+        min-width: 80px;
+        border-radius: 8px;
+    }
+
+    .stat-number {
+        font-size: 1.3rem;
+        margin-bottom: 0.2rem;
+    }
+
+    .stat-label {
+        font-size: 0.75rem;
+        line-height: 1.2;
+    }
+}
+
+/* Extra small devices */
+@media (max-width: 360px) {
+    .stats-container {
+        gap: 0.4rem;
+    }
+
+    .stat-item {
+        padding: 0.5rem;
+        min-width: 70px;
+    }
+
+    .stat-number {
+        font-size: 1.2rem;
+    }
+
+    .stat-label {
+        font-size: 0.7rem;
+    }
+}
+
+/* CTA Buttons */
+.cta-container {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin: 2rem 0;
+    flex-wrap: wrap;
+}
+
+.primary-btn, .secondary-btn {
+    padding: 0.8rem 1.5rem;
+    border-radius: 25px;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: transform 0.3s ease;
+}
+
+.primary-btn {
+    background: var(--gradient);
+    color: var(--text-color);
+}
+
+.secondary-btn {
+    border: 2px solid var(--accent-color);
+}
+
 /* Enhanced Social Links */
 .social-btn {
     display: flex;
@@ -3944,6 +5581,77 @@ img {
     #contact .social-btn {
         width: 38px;
         height: 38px;
+    }
+}
+
+/* Hide space objects on mobile */
+@media (max-width: 768px) {
+    .rocket, 
+    .ufo, 
+    .explosion, 
+    .ufo-explosion {
+        display: none !important;
+    }
+}
+
+/* Also stop the JavaScript from creating new ones */
+@media (max-width: 768px) {
+    .rocket,
+    .ufo {
+        animation: none !important;
+        opacity: 0 !important;
+        pointer-events: none !important;
+    }
+}
+
+/* Disable floating animations on mobile */
+@media (max-width: 768px) {
+    /* Stop profile photo floating */
+    .profile-frame {
+        animation: none !important;
+    }
+
+    /* Stop logo floating */
+    .logo {
+        animation: none !important;
+    }
+
+    /* Stop nav links floating */
+    .nav-links li {
+        animation: none !important;
+    }
+
+    /* Stop social buttons floating */
+    .social-btn:hover {
+        transform: none !important;
+    }
+
+    /* Stop CTA buttons floating */
+    .primary-btn:hover,
+    .secondary-btn:hover {
+        transform: none !important;
+    }
+
+    /* Stop hero content floating */
+    .tagline,
+    .sub-tagline {
+        animation: none !important;
+    }
+
+    /* Stop stats floating */
+    .stat-item {
+        animation: none !important;
+    }
+
+    /* Stop decorative shapes floating */
+    .shape {
+        animation: none !important;
+    }
+
+    /* Stop any hover animations */
+    *:hover {
+        animation: none !important;
+        transform: none !important;
     }
 }
 

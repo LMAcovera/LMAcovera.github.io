@@ -280,14 +280,42 @@ function createExplosion(rocket) {
     rocket.remove();
 }
 
-function startRockets() {
-    setInterval(() => {
-        createRocket();
-    }, 3000 + Math.random() * 2000); // Increased delay: 3-5 seconds between spawns
+function shouldCreateSpaceObjects() {
+    return window.innerWidth > 768;
 }
 
-document.addEventListener('DOMContentLoaded', () => {
+function startSpaceObjects() {
+    if (!shouldCreateSpaceObjects()) return;
+
     startRockets();
+    setInterval(() => {
+        if (shouldCreateSpaceObjects()) {
+            createUFO();
+        }
+    }, 3000 + Math.random() * 2000);
+}
+
+function startRockets() {
+    if (!shouldCreateSpaceObjects()) return;
+
+    setInterval(() => {
+        if (shouldCreateSpaceObjects()) {
+            createRocket();
+        }
+    }, 3000 + Math.random() * 2000);
+}
+
+// Update window resize event
+window.addEventListener('resize', () => {
+    if (!shouldCreateSpaceObjects()) {
+        // Remove all existing space objects
+        document.querySelectorAll('.rocket, .ufo, .explosion, .ufo-explosion')
+            .forEach(el => el.remove());
+    }
+});
+
+document.addEventListener('DOMContentLoaded', () => {
+    startSpaceObjects();
     
     // Reduced initial rockets from 5 to 2
     for (let i = 0; i < 2; i++) {
